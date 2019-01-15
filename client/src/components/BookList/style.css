@@ -1,0 +1,23 @@
+.card {
+    margin: 50px;
+    padding: 50px;
+}
+
+img {
+    float: left;
+}
+
+.clearfix {
+    overflow: auto;
+}
+
+.infoDiv {
+    width: 87%;
+    border: 1px solid gray;
+    padding: 20px;
+    float: left;
+}
+
+button {
+    float: right;
+}
