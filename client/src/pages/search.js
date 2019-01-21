@@ -37,9 +37,22 @@ class Search extends Component {
         }
     };
 
-    saveBook = (book) => {
-        console.log()
+    saveBook = (bookTitle) => {
         
+        for(var i = 0; i < this.state.books.length; i++) {
+            if(this.state.books[i].volumeInfo.title === bookTitle) {
+
+                API.saveBook({
+                    authors: this.state.books[i].volumeInfo.authors[0],
+                    description: this.state.books[i].volumeInfo.description,
+                    image: this.state.books[i].volumeInfo.imageLinks.thumbnail,
+                    link: this.state.books[i].volumeInfo.infoLink,
+                    title: this.state.books[i].volumeInfo.title
+                })
+                    .then(res => console.log(res))
+                    .catch(err => console.log(err));
+            }
+        }
     }
     
     render() {
@@ -52,7 +65,7 @@ class Search extends Component {
                         onClick={this.handleFormSubmit}
                     />
                     {!this.state.books.length ? (
-                        <h3 className="text-center">No books to show.</h3>
+                        <h3 className="text-center">Wanna start looking for some books?</h3>
                     ) : (
                         
                         <BookListWrapper>
@@ -61,11 +74,11 @@ class Search extends Component {
                                     <BookList
                                         key={book.volumeInfo.title}
                                         title={book.volumeInfo.title}
-                                        author={book.volumeInfo.authors}
+                                        author={book.volumeInfo.authors[0]}
                                         description={book.volumeInfo.description}
                                         image={book.volumeInfo.imageLinks.thumbnail}
                                         link={book.volumeInfo.infoLink}
-                                        onClick={this.saveBook}
+                                        saveBook={this.saveBook}
                                     />
                                 );
                             })}

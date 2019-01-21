@@ -7,7 +7,7 @@ function BookList(props) {
             <div className="card-body clearfix">
                 <img className="bookImage img-thumbnail" src={props.image} />
                 <div className="infoDiv">
-                    <button type="button" className="btn btn-info" onClick={props.onClick}>Save</button>
+                    <button type="button" className="btn btn-info" onClick={() => props.saveBook(props.title)}>Save</button>
                     &nbsp;
                     <a href={props.link}><button type="button" className="btn btn-secondary">View</button></a>
                     <br></br><br></br>
