@@ -1,41 +1,25 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import booklist from "./booklist.json";
-import Wrapper from "./components/Wrapper";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Search from "./pages/search";
+import Saved from "./pages/saved";
+import Detail from "./pages/details";
+import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
-import BodyWrapper from "./components/BodyWrapper";
-import Jumbotron from "./components/Jumbotron";
-import SearchBar from "./components/SearchBar";
-import BookList from "./components/BookList";
 
-
-class App extends Component {
-
-  state = {
-    booklist
-  };
-
-  render() {
-    return (
-      <Wrapper>
+function App() {
+  return (
+    <Router>
+      <div>
         <Nav />
-        <Jumbotron />
-        <BodyWrapper>
-          <SearchBar />
-          {this.state.booklist.map((book) => (
-            <BookList
-              image={book.image}
-              title={book.title}
-              author={book.author}
-              description={book.description}
-              link={book.link}
-            />
-          ))}
-        </BodyWrapper>
-      </Wrapper>
-    )
-  }
+        <Switch>
+          <Route exact path="/" component={Search} />
+          <Route exact path="/saved" component={Saved} />
+          <Route exact path="/saved/:id" component={Detail} />
+          <Route component={NoMatch} />
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default App;

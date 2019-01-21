@@ -1,6 +1,5 @@
 .card {
-    margin: 50px;
-    padding: 50px;
+    padding: 30px;
 }
 
 img {
@@ -12,8 +11,7 @@ img {
 }
 
 .infoDiv {
-    width: 87%;
-    border: 1px solid gray;
+    width: 86%;
     padding: 20px;
     float: left;
 }
