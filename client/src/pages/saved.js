@@ -18,7 +18,7 @@ class Search extends Component {
     loadBooks = () => {
         API.getAllBooks()
             .then(res => {
-                // console.log(res.data);
+                console.log(res.data);
                 this.setState({ books: res.data })
             })
             .catch(err => console.log(err));
@@ -52,6 +52,7 @@ class Search extends Component {
                                     image={book.image}
                                     link={book.link}
                                     saved={book.saved}
+                                    bookId={book.id}
                                     deleteBook={this.deleteBook}
                                 />
                             );

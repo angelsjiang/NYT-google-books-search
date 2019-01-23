@@ -10,7 +10,7 @@ function BookList(props) {
                     {props.saved ? (
                         <button type="button" className="btn btn-info" onClick={() => props.deleteBook(props.id)} waves='light'>Delete</button>
                     ) : (
-                        <button type="button" className="btn btn-info" onClick={() => props.saveBook(props.id)}>Save</button>
+                        <button type="button" className="btn btn-info" onClick={() => props.saveBook(props.bookId)}>Save</button>
                     )}
                     <a href={props.link}><button type="button" className="btn btn-secondary">View</button></a>
                     <br></br><br></br>

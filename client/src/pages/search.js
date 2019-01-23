@@ -49,6 +49,7 @@ class Search extends Component {
                     image: this.state.books[i].volumeInfo.imageLinks.thumbnail,
                     link: this.state.books[i].volumeInfo.infoLink,
                     title: this.state.books[i].volumeInfo.title,
+                    bookId: this.state.books[i].id,
                     saved: true
                 })
                     .then(res => console.log(res))
@@ -76,13 +77,13 @@ class Search extends Component {
                                     return(
                                         <BookList
                                             key={book.id}
-                                            id={book.id}
                                             title={book.volumeInfo.title}
                                             author={book.volumeInfo.authors}
                                             description={book.volumeInfo.description}
                                             image={book.volumeInfo.imageLinks.thumbnail}
                                             alt={book.volumeInfo.title}
                                             link={book.volumeInfo.infoLink}
+                                            bookId={book.id}
                                             saveBook={this.saveBook}
                                         />
                                     );
