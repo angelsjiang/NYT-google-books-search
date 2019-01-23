@@ -23,6 +23,17 @@ class Search extends Component {
             })
             .catch(err => console.log(err));
     }
+
+    deleteBook = (id) => {
+        console.log(id);
+        API.deleteBook(id)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => console.log(err));
+
+        this.loadBooks();
+    }
     
     render() {
         return (
@@ -34,11 +45,14 @@ class Search extends Component {
                             return(
                                 <BookList
                                     key={book._id}
+                                    id={book._id}
                                     title={book.title}
                                     author={book.authors}
                                     description={book.description}
                                     image={book.image}
                                     link={book.link}
+                                    saved={book.saved}
+                                    deleteBook={this.deleteBook}
                                 />
                             );
                         })}

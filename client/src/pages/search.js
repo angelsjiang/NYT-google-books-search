@@ -10,6 +10,7 @@ import BookList from "../components/BookList";
 class Search extends Component {
     state = {
         books:[],
+        key: "",
         title: "",
         author: "",
         description: "",
@@ -40,17 +41,18 @@ class Search extends Component {
     saveBook = (bookTitle) => {
         
         for(var i = 0; i < this.state.books.length; i++) {
-            if(this.state.books[i].volumeInfo.title === bookTitle) {
+            if(this.state.books[i].volumeInfo.title === bookTitle && this.state.books[i].volumeInfo.imageLinks) {
 
                 API.saveBook({
-                    authors: this.state.books[i].volumeInfo.authors[0],
+                    authors: this.state.books[i].volumeInfo.authors,
                     description: this.state.books[i].volumeInfo.description,
                     image: this.state.books[i].volumeInfo.imageLinks.thumbnail,
                     link: this.state.books[i].volumeInfo.infoLink,
-                    title: this.state.books[i].volumeInfo.title
+                    title: this.state.books[i].volumeInfo.title,
+                    saved: true
                 })
                     .then(res => console.log(res))
-                    .catch(err => console.log(err));
+                    // .catch(err => console.log(err));
             }
         }
     }
@@ -70,17 +72,20 @@ class Search extends Component {
                         
                         <BookListWrapper>
                             {this.state.books.map((book) => {
-                                return(
-                                    <BookList
-                                        key={book.volumeInfo.title}
-                                        title={book.volumeInfo.title}
-                                        author={book.volumeInfo.authors[0]}
-                                        description={book.volumeInfo.description}
-                                        image={book.volumeInfo.imageLinks.thumbnail}
-                                        link={book.volumeInfo.infoLink}
-                                        saveBook={this.saveBook}
-                                    />
-                                );
+                                if(book.volumeInfo.imageLinks) {
+                                    return(
+                                        <BookList
+                                            key={book.id}
+                                            title={book.volumeInfo.title}
+                                            author={book.volumeInfo.authors}
+                                            description={book.volumeInfo.description}
+                                            image={book.volumeInfo.imageLinks.thumbnail}
+                                            alt={book.volumeInfo.title}
+                                            link={book.volumeInfo.infoLink}
+                                            saveBook={this.saveBook}
+                                        />
+                                    );
+                                }
                             })}
                         </BookListWrapper>
                     )}
