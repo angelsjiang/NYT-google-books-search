@@ -38,10 +38,10 @@ class Search extends Component {
         }
     };
 
-    saveBook = (bookTitle) => {
+    saveBook = (bookId) => {
         
         for(var i = 0; i < this.state.books.length; i++) {
-            if(this.state.books[i].volumeInfo.title === bookTitle && this.state.books[i].volumeInfo.imageLinks) {
+            if(this.state.books[i].id === bookId && this.state.books[i].volumeInfo.imageLinks) {
 
                 API.saveBook({
                     authors: this.state.books[i].volumeInfo.authors,
@@ -76,6 +76,7 @@ class Search extends Component {
                                     return(
                                         <BookList
                                             key={book.id}
+                                            id={book.id}
                                             title={book.volumeInfo.title}
                                             author={book.volumeInfo.authors}
                                             description={book.volumeInfo.description}
