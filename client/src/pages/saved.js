@@ -18,7 +18,7 @@ class Search extends Component {
     loadBooks = () => {
         API.getAllBooks()
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 this.setState({ books: res.data })
             })
             .catch(err => console.log(err));
